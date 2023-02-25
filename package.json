@@ -1,0 +1,27 @@
+{
+  "name": "products-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server-dev": "npx nodemon --watch server server/index.js",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpp2209-copernicium/products-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpp2209-copernicium/products-service/issues"
+  },
+  "homepage": "https://github.com/rpp2209-copernicium/products-service#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "node": "^19.7.0",
+    "nodemon": "^2.0.20"
+  }
+}
