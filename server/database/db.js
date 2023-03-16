@@ -10,10 +10,12 @@ const db = new pg.Pool({
 
 /* ------------------------------ DB Method Functions | Mock API ------------------------------ */
 
-// product query
-let productQuery = (product_id, callback) => {
-  // make the db query to product table with product id
-  db.query(`SELECT product.id, name, slogan, description, category, default_price, ARRAY_AGG(json_build_object('feature', features.feature, 'value', features.value)) features FROM product INNER JOIN features on product.id = product_id where product.id = ${product_id} GROUP BY product.id`, (err, res) => {
+// product query with id query
+let productsQuery = (product_id, callback) => {
+  // make the db query to product table with product id, join with features tables as an array
+  db.query(`SELECT product.id, name, slogan, description, category, default_price,
+  ARRAY_AGG(json_build_object('feature', features.feature, 'value', features.value)) features FROM product
+  INNER JOIN features on product.id = product_id where product.id = ${product_id} GROUP BY product.id`, (err, res) => {
     if (err) {
       console.log('error', err);
     } else {
@@ -22,26 +24,29 @@ let productQuery = (product_id, callback) => {
   })
 }
 
-// features query
-let featuresQuery = (product_id, callback) => {
-  // make the db query to features table with product id
-  db.query(`Select feature, value from features where product_id = ${product_id}`, (err, res) => {
-    if (err) {
-      console.log('error', err);
-    } else {
-      callback(res.rows);
-    }
-  })
-}
 
 // styles query
 let stylesQuery = (product_id, callback) => {
   // make the db query to styles table with product id
+
+  // each styles table needs photos and skus along with it
+  // query should join the tables together
+
+  /* CURRENT!!! Works with all photos being added to the style at the moment, but we need
+  to add the skus somehow which is worth looking into. Then we need to add our iteration function too... */
+  db.query(`SELECT styles.style_id, name, sale_price, original_price, default_style, array_agg(json_build_object('thumbnail_url', photos.thumbnail_url, url, photos.url)) photos FROM styles INNER JOIN photos on styles.style_id = styleid WHERE styles.style_id = ${product_id} GROUP BY styles.style_id`, (err, res) => {
+    if (err) {
+      console.log('error with photos', err)
+    } else {
+      callback(res.rows[0]);
+    }
+  })
 }
 
 // skus query
 let skusQuery = (product_id, callback) => {
   // make the db query to skus table with product id
+
 }
 
 
@@ -50,8 +55,7 @@ let photosQuery = (product_id, callback) => {
   // make the db query to photos table with product id
 }
 
-module.exports.productQuery = productQuery;
-module.exports.featuresQuery = featuresQuery;
+module.exports.productsQuery = productsQuery;
 module.exports.stylesQuery = stylesQuery;
 module.exports.skusQuery = skusQuery;
 module.exports.photosQuery = photosQuery;
