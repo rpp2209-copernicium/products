@@ -63,7 +63,7 @@ db.query("CREATE TABLE product(id INT, name text, slogan text, description text,
     })
     // id,productId,name,sale_price,original_price,default_style
     // create STYLES table here
-    db.query("CREATE TABLE styles(id INT, productId INT, name TEXT, sale_price TEXT, original_price TEXT, default_style TEXT, PRIMARY KEY(id), CONSTRAINT fk_product FOREIGN KEY(productId) REFERENCES product(id))", (err, res) => {
+    db.query("CREATE TABLE styles(style_id INT, productId INT, name TEXT, sale_price TEXT, original_price TEXT, default_style TEXT, PRIMARY KEY(id), CONSTRAINT fk_product FOREIGN KEY(productId) REFERENCES product(id))", (err, res) => {
       if (err) {
         console.log('error!!', err);
       } else {
@@ -77,7 +77,7 @@ db.query("CREATE TABLE product(id INT, name text, slogan text, description text,
             console.log('photos table created successfully!');
             //id,styleId,size,quantity
             //create SKUS table here
-            db.query("CREATE TABLE skus(id INT, styleId INT, size TEXT, quantity TEXT, PRIMARY KEY(id), CONSTRAINT fk_skus FOREIGN KEY(styleId) REFERENCES styles(id))", (err, res) => {
+            db.query("CREATE TABLE skus(id INT, styleId INT, size TEXT, quantity TEXT, PRIMARY KEY(id), CONSTRAINT fk_skus FOREIGN KEY(styleId) REFERENCES styles(style_id))", (err, res) => {
               if (err) {
                 console.log('error!!', err);
                 db.end();
