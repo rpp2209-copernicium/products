@@ -30,6 +30,9 @@ app.get('/products/:product_id', (req, res) => {
   // call on helper functions to make our database queries for product information
     // product info includes queries to tables of product, features
     // example api.productQuery;
+    api.productQuery(product_id, (result) => {
+      res.status(200).send(result);
+    })
 })
 
 app.get('/products/:product_id/styles', (req, res) => {
