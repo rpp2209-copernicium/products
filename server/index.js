@@ -45,6 +45,7 @@ app.get('/products/:product_id/styles', (req, res) => {
       res.status(200).send(result);
     })
 
+
 })
 
 
