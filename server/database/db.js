@@ -42,7 +42,8 @@ let stylesQuery = (product_id, callback) => {
     INNER JOIN photos ON styles.style_id = photos.styleid
     INNER JOIN skus ON styles.style_id = skus.styleid
     WHERE productid = ${product_id}
-    GROUP BY styles.style_id`, (err, res) => {
+    GROUP BY styles.style_id
+    ORDER BY style_id ASC`, (err, res) => {
       if (err) {
         console.log(err);
       } else {
