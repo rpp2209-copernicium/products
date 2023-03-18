@@ -30,18 +30,24 @@ app.get('/products/:product_id', (req, res) => {
   // call on helper functions to make our database queries for product information
     // product info includes queries to tables of product, features
     // example api.productQuery;
-    api.productQuery(product_id, (result) => {
+    api.productsQuery(product_id, (result) => {
       res.status(200).send(result);
     })
 })
 
 app.get('/products/:product_id/styles', (req, res) => {
-  res.send(req.params)
 
   var product_id = Number.parseInt(req.params.product_id);
   // we want to obtain the styles for the above product
   // call on helper functions to make our database queries for product styles information
     // styles includes queries to tables of styles, photos, skus
+    api.stylesQuery(product_id, (result) => {
+      styles = {};
+      styles['product_id'] = req.params.product_id;
+      styles['results'] = result;
+      res.status(200).send(styles);
+    })
+
 
 })
 
