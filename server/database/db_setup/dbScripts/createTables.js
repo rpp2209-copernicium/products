@@ -3,7 +3,7 @@ const db = new pg.Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'products',
-  password: '',
+  password: 'products',
   port: 5432,
 })
 
