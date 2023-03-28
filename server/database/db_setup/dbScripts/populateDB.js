@@ -3,16 +3,16 @@ const path = require('path');
 const db = new pg.Pool({
   user: 'postgres',
   host: 'localhost',
-  database: 'products',
-  password: 'products',
+  database: 'product',
+  password: '',
   port: 5432,
 })
 
-var productFile = path.resolve(__dirname, '../ETL_DATA/product.csv');
-var stylesFile = path.resolve(__dirname, '../ETL_DATA/styles.csv');
-var photosFile = path.resolve(__dirname, '../ETL_DATA/photos.csv');
-var featuresFile = path.resolve(__dirname, '../ETL_DATA/features.csv');
-var skusFile = path.resolve(__dirname, '../ETL_DATA/skus.csv');
+var productFile = path.resolve(__dirname, '../../../../../ETL_DATA/product.csv');
+var stylesFile = path.resolve(__dirname, '../../../../../ETL_DATA/styles.csv');
+var photosFile = path.resolve(__dirname, '../../../../../ETL_DATA/photos.csv');
+var featuresFile = path.resolve(__dirname, '../../../../../ETL_DATA/features.csv');
+var skusFile = path.resolve(__dirname, '../../../../../ETL_DATA/skus.csv');
 
 
 // id,product_id,feature,value
@@ -26,7 +26,7 @@ db.connect( (err, client, done) => {
       console.log('failed to copy', err);
     } else {
       console.log('product data inserted!');
-      client.query(`COPY styles (id, productId, name, sale_price, original_price, default_style) FROM '${stylesFile}' DELIMITER ',' CSV HEADER`, (err, res) => {
+      client.query(`COPY styles (style_id, productId, name, sale_price, original_price, default_style) FROM '${stylesFile}' DELIMITER ',' CSV HEADER`, (err, res) => {
         if (err) {
           console.log('failed to copy', err);
         } else {
