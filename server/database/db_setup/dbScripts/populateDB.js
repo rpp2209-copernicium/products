@@ -1,7 +1,7 @@
 const pg = require('pg');
 const path = require('path');
 const db = new pg.Pool({
-  user: 'tigerhong',
+  user: 'postgres',
   host: 'localhost',
   database: 'products',
   password: '',
@@ -18,7 +18,7 @@ var skusFile = path.resolve(__dirname, '../ETL_DATA/skus.csv');
 // id,product_id,feature,value
 // id,productId,name,sale_price,original_price,default_style
 // id,styleId,url,thumbnail_url
-//id,styleId,size,quantity
+// id,styleId,size,quantity
 
 db.connect( (err, client, done) => {
   client.query(`COPY product(id, name, slogan, description, category, default_price) FROM '${productFile}' DELIMITER ',' CSV HEADER`, (err, res) => {

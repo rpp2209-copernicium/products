@@ -9,41 +9,41 @@ const db = new pg.Pool({
 
 // DROP table script if need to reset tables
 
-db.query("DROP TABLE IF EXISTS product CASCADE", (err, res) => {
-  if (err) {
-    console.log('cannot drop table')
-  } else {
-    console.log('product table dropped!');
-    db.query("DROP TABLE IF EXISTS styles CASCADE", (err, res) => {
-      if (err) {
-        console.log('cannot drop table')
-      } else {
-        console.log('styles table dropped!')
-        db.query("DROP TABLE IF EXISTS photos CASCADE", (err, res) => {
-          if (err) {
-            console.log('cannot drop table')
-          } else {
-            console.log('photos table dropped!')
-            db.query("DROP TABLE IF EXISTS skus CASCADE", (err, res) => {
-              if (err) {
-                console.log('cannot drop table')
-              } else {
-                console.log('skus table dropped!')
-                db.query("DROP TABLE IF EXISTS features CASCADE", (err, res) => {
-                  if (err) {
-                    console.log('cannot drop table')
-                  } else {
-                    console.log('features table dropped!')
-                  }
-                });
-              }
-            });
-          }
-        })
-      }
-    });
-  }
-});
+// db.query("DROP TABLE IF EXISTS product CASCADE", (err, res) => {
+//   if (err) {
+//     console.log('cannot drop table')
+//   } else {
+//     console.log('product table dropped!');
+//     db.query("DROP TABLE IF EXISTS styles CASCADE", (err, res) => {
+//       if (err) {
+//         console.log('cannot drop table')
+//       } else {
+//         console.log('styles table dropped!')
+//         db.query("DROP TABLE IF EXISTS photos CASCADE", (err, res) => {
+//           if (err) {
+//             console.log('cannot drop table')
+//           } else {
+//             console.log('photos table dropped!')
+//             db.query("DROP TABLE IF EXISTS skus CASCADE", (err, res) => {
+//               if (err) {
+//                 console.log('cannot drop table')
+//               } else {
+//                 console.log('skus table dropped!')
+//                 db.query("DROP TABLE IF EXISTS features CASCADE", (err, res) => {
+//                   if (err) {
+//                     console.log('cannot drop table')
+//                   } else {
+//                     console.log('features table dropped!')
+//                   }
+//                 });
+//               }
+//             });
+//           }
+//         })
+//       }
+//     });
+//   }
+// });
 
 // create all TABLES HERE.
 // create PRODUCT table here
