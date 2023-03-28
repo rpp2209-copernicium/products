@@ -3,8 +3,8 @@ const path = require('path');
 const db = new pg.Pool({
   user: 'postgres',
   host: 'localhost',
-  database: 'product',
-  password: '',
+  database: 'products',
+  password: 'products',
   port: 5432,
 })
 
