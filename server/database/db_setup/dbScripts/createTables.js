@@ -1,6 +1,6 @@
 const pg = require('pg');
 const db = new pg.Pool({
-  user: 'tigerhong',
+  user: 'postgres',
   host: 'localhost',
   database: 'products',
   password: '',
