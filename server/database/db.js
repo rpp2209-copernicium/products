@@ -1,25 +1,26 @@
 const pg = require('pg');
 const db = new pg.Pool({
   user: 'postgres',
-  host: 'localhost',
+  host: '54.175.120.127',
   database: 'products',
   password: 'products',
-  port: 5432,
+  port: 5432
 })
-
 
 /* ------------------------------ DB Method Functions | Mock API ------------------------------ */
 
 // product query with id query
 let productsQuery = (product_id, callback) => {
+
   // make the db query to product table with product id, join with features tables as an array
   db.query(`SELECT product.id, name, slogan, description, category, default_price,
   ARRAY_AGG(json_build_object('feature', features.feature, 'value', features.value)) features FROM product
   INNER JOIN features ON product.id = product_id where product.id = ${product_id} GROUP BY product.id`, (err, res) => {
     if (err) {
-      console.log('error', err);
+      console.log(err);
+      callback(err, null);
     } else {
-    callback(res.rows[0])
+      callback(null, res.rows[0])
     }
   })
 }
