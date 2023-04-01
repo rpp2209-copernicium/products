@@ -1,10 +1,11 @@
+require('dotenv').config();
 const pg = require('pg');
 const db = new pg.Pool({
-  user: 'postgres',
+  user: process.env.DB_USER,
   host: 'localhost',
-  database: 'products',
-  password: 'products',
-  port: 5432,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: proces.env.DB_HOST
 })
 
 // DROP table script if need to reset tables

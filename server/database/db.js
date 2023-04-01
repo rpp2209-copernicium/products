@@ -1,10 +1,11 @@
+require('dotenv').config();
 const pg = require('pg');
 const db = new pg.Pool({
-  user: 'postgres',
-  host: '54.175.120.127',
-  database: 'products',
-  password: 'products',
-  port: 5432
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: proces.env.DB_HOST
 })
 
 /* ------------------------------ DB Method Functions | Mock API ------------------------------ */
