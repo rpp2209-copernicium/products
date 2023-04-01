@@ -6,7 +6,7 @@ const db = new pg.Pool({
   host: 'localhost',
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: proces.env.DB_HOST
+  port: process.env.DB_HOST
 })
 
 var productFile = path.resolve(__dirname, '../../../../../ETL_DATA/product.csv');
