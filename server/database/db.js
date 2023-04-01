@@ -5,7 +5,7 @@ const db = new pg.Pool({
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: proces.env.DB_HOST
+  port: process.env.DB_HOST
 })
 
 /* ------------------------------ DB Method Functions | Mock API ------------------------------ */
