@@ -1,11 +1,12 @@
+require('dotenv').config();
 const pg = require('pg');
 const path = require('path');
 const db = new pg.Pool({
-  user: 'postgres',
+  user: process.env.DB_USER,
   host: 'localhost',
-  database: 'products',
-  password: 'products',
-  port: 5432,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: proces.env.DB_HOST
 })
 
 var productFile = path.resolve(__dirname, '../../../../../ETL_DATA/product.csv');
