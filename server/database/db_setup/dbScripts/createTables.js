@@ -5,7 +5,7 @@ const db = new pg.Pool({
   host: 'localhost',
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: proces.env.DB_HOST
+  port: parseInt(process.env.DB_HOST)
 })
 
 // DROP table script if need to reset tables
