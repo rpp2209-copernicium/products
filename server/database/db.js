@@ -41,8 +41,8 @@ let stylesQuery = (product_id, callback) => {
     ARRAY_AGG(json_build_object('thumbnail_url', photos.thumbnail_url, 'url', photos.url)) photos,
     JSON_OBJECT_AGG(skus.id, JSON_BUILD_OBJECT('quantity', skus.quantity, 'size', skus.size)) skus
     FROM styles
-    INNER JOIN photos ON styles.style_id = photos.styleid
-    INNER JOIN skus ON styles.style_id = skus.styleid
+    LEFT JOIN photos ON styles.style_id = photos.styleid
+    LEFT JOIN skus ON styles.style_id = skus.styleid
     WHERE productid = ${product_id} GROUP BY styles.style_id
     ORDER BY style_id ASC`, (err, res) => {
       if (err) {
