@@ -45,17 +45,18 @@ app.get('/products/:product_id/styles', (req, res) => {
   // we want to obtain the styles for the above product
   // call on helper functions to make our database queries for product styles information
     // styles includes queries to tables of styles, photos, skus
-    api.stylesQuery(product_id, (result) => {
+    api.stylesQuery(product_id, (err, result) => {
+      if (err) {
+        res.status(400).send(err)
+      } else {
       styles = {};
       styles['product_id'] = req.params.product_id;
       styles['results'] = result;
-      res.status(200).send(styles);
+      res.status(200).send(result);
+      }
     })
 
-
 })
-
-
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
