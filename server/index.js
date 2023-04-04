@@ -49,9 +49,10 @@ app.get('/products/:product_id/styles', (req, res) => {
       if (err) {
         res.status(400).send(err)
       } else {
-      styles = {};
-      styles['product_id'] = req.params.product_id;
-      styles['results'] = result;
+      styles = {
+        product_id: req.params.product_id,
+        results: result
+      };
       res.status(200).send(styles);
       }
     })
