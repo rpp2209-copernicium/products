@@ -55,5 +55,3 @@ let stylesQuery = (product_id, callback) => {
 
 module.exports.productsQuery = productsQuery;
 module.exports.stylesQuery = stylesQuery;
-module.exports.skusQuery = skusQuery;
-module.exports.photosQuery = photosQuery;
