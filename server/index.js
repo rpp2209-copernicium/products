@@ -52,7 +52,7 @@ app.get('/products/:product_id/styles', (req, res) => {
       styles = {};
       styles['product_id'] = req.params.product_id;
       styles['results'] = result;
-      res.status(200).send(result);
+      res.status(200).send(styles);
       }
     })
 
