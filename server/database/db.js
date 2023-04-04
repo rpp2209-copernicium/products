@@ -16,7 +16,7 @@ let productsQuery = (product_id, callback) => {
   // make the db query to product table with product id, join with features tables as an array
   db.query(`SELECT product.id, name, slogan, description, category, default_price,
   ARRAY_AGG(json_build_object('feature', features.feature, 'value', features.value)) features FROM product
-  INNER JOIN features ON product.id = product_id where product.id = 5 GROUP BY product.id`, (err, res) => {
+  INNER JOIN features ON product.id = product_id where product.id = ${product_id} GROUP BY product.id`, (err, res) => {
     if (err) {
       console.log(err);
       callback(err, null);
@@ -43,7 +43,7 @@ let stylesQuery = (product_id, callback) => {
     FROM styles
     INNER JOIN photos ON styles.style_id = photos.styleid
     INNER JOIN skus ON styles.style_id = skus.styleid
-    WHERE productid = 100000 GROUP BY styles.style_id
+    WHERE productid = ${product_id} GROUP BY styles.style_id
     ORDER BY style_id ASC`, (err, res) => {
       if (err) {
         callback(err, null)
