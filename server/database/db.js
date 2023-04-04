@@ -38,8 +38,8 @@ let stylesQuery = (product_id, callback) => {
   to add the skus somehow which is worth looking into. Then we need to add our iteration function too... */
   db.query(
     `SELECT styles.style_id, name, sale_price, original_price, default_style,
-    JSON_OBJECT_AGG(skus.id, JSON_BUILD_OBJECT('quantity', skus.quantity, 'size', skus.size)) skus,
-    ARRAY_AGG(json_build_object('thumbnail_url', photos.thumbnail_url, url, photos.url)) photos
+    ARRAY_AGG(json_build_object('thumbnail_url', photos.thumbnail_url, 'url', photos.url)) photos,
+    JSON_OBJECT_AGG(skus.id, JSON_BUILD_OBJECT('quantity', skus.quantity, 'size', skus.size)) skus
     FROM styles
     INNER JOIN photos ON styles.style_id = photos.styleid
     INNER JOIN skus ON styles.style_id = skus.styleid
